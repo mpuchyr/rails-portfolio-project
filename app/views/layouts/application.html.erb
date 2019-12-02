@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to('Log in with Facebook', '/auth/facebook') %>
+      <%= link_to "Log Out", logout_path %>
+    </header>
     <%= yield %>
   </body>
 </html>
