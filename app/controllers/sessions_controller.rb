@@ -1,18 +1,31 @@
 class SessionsController < ApplicationController
 
+    def new
+    end
+
     def create
-        @user = User.find_by(email: auth['info']['email'])
-        if @user
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
-        else
-            @user = User.create do |u|
-                u.username = auth['info']['email'].split('@').first
-                u.email = auth['info']['email']
-                u.password = SecureRandom.hex
+        # binding.pry
+        if auth
+            @user = User.find_by(email: auth['info']['email'])
+            if @user
+                session[:user_id] = @user.id
+                redirect_to user_path(@user)
+            else
+                @user = User.create do |u|
+                    u.username = auth['info']['email'].split('@').first
+                    u.email = auth['info']['email']
+                    u.password = SecureRandom.hex
+                end
+                session[:user_id] = @user.id
+                redirect_to user_path(@user)
             end
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
+        else
+            @user = User.find_by(username: params[:username])
+            if @user && @user.authenticate(params[:password])
+                redirect_to user_path(@user)
+            else
+                redirect_to login_path
+            end
         end
     end
 
