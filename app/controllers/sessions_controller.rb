@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
         else
             @user = User.find_by(username: params[:username])
             if @user && @user.authenticate(params[:password])
+                session[:user_id]
                 redirect_to user_path(@user)
             else
                 flash[:alert] = "Username or password was incorrect"
