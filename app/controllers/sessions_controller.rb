@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-        # binding.pry
+
         if auth
             @user = User.find_by(email: auth['info']['email'])
             if @user
@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
             if @user && @user.authenticate(params[:password])
                 redirect_to user_path(@user)
             else
+                flash[:alert] = "Username or password was incorrect"
                 redirect_to login_path
             end
         end
