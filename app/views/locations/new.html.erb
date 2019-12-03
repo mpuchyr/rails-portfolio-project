@@ -1,0 +1,13 @@
+<%= form_for @location do |l| %>
+    <%= l.text_field :name %>
+    <%= l.fields_for :photoshoots do |p| %>
+        <%= p.hidden_field :user_id, value: session[:user_id] %>
+        Start Time: <%= p.datetime_select :start_time %>
+        <br>
+        End Time: <%= p.datetime_select :end_time %>
+        <br>
+        Comments: <%= p.text_area :comments %>
+        <br>
+    <% end %>
+    <%= l.submit %>
+<% end %>
