@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
     validates :username, presence: true
     validates :username, uniqueness: true
+
+    has_many :photoshoots
+    has_many :locations, through: :photoshoots
 end
