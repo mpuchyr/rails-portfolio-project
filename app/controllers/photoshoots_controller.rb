@@ -23,18 +23,12 @@ class PhotoshootsController < ApplicationController
         else
             @photoshoot.location = Location.find_by(id: photoshoot_params[:location_attributes][:id])
         end
-        binding.pry
         if @photoshoot.valid?
             @photoshoot.save
             redirect_to photoshoot_path(@photoshoot)
         else
             render :new
         end
-
-
-
-
-
     end
 
     def edit
