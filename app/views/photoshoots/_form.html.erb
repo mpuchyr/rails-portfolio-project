@@ -1,0 +1,13 @@
+<%= form_for @photoshoot do |p| %>
+    <%= p.fields_for :location_attributes, @photoshoot.location do |l| %>
+        <%= l.collection_select :id, Location.all, :id, :name, :include_blank => true %>
+        <%= l.text_field :name, :value => "" %>
+    <% end %>
+    <br>
+    Start Time: <%= p.datetime_select :start_time %>
+    <br>
+    End Time: <%= p.datetime_select :end_time %>
+    <br>
+    Comments: <%= p.text_area :comments %>
+    <%= p.submit %>
+<% end %>
