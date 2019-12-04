@@ -14,11 +14,36 @@
  *= require_self
  */
 body {
-    background-color: gray;
+    background-color: #0B0C10;
 }
 
+header {
+    width: 66%;
+    margin: 10px auto 10px auto;
+    background-color: #1F2833;
+    border-radius: 10px;
+}
+
+header button {
+    padding: 15px;
+    margin: 5px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0B0C10;
+    border: 2px solid #45A29E;
+}
+
+header a {
+    text-decoration: none;
+    color: #45A29E;
+}
+
+h1 {
+    text-align: center;
+}
 .wrapper {
-    background-color: white;
+    color: #66FCF1;
+    background-color: #1F2833;
     width: 66%;
     margin-right: auto;
     margin-left: auto;
@@ -30,7 +55,23 @@ body {
      padding: 2px;
      background-color: red;
      display: table;
-
  }
+
+ li a{
+     text-decoration: none;
+     color: #66FCF1;
+ }
+
+form select {
+    border-radius: 10px;
+}
+
+form input {
+    border-radius: 10px;
+}
+
+form textarea {
+    border-radius: 10px;
+}
 
 
