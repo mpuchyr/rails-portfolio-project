@@ -1,4 +1,9 @@
-<h1><%= @photoshoot.start_time %> - <%= @photoshoot.end_time %></h1>
+<% if @photoshoot.start_time.day != @photoshoot.end_time.day %>
+    <h1><%= @photoshoot.start_time.strftime("%b. %d %Y %l:%M%p") %> - <%= @photoshoot.end_time.strftime("%b. %d %Y %l:%M%p") %></h1>
+<% else %>
+    <h1><%= @photoshoot.start_time.strftime("%b. %d %Y %l:%M%p") %> - <%= @photoshoot.end_time.strftime("%l:%M%p") %></h1>
+<% end %>
+
 <h2><%= @photoshoot.location.name %></h2>
 <p><%= @photoshoot.comments %></p>
 

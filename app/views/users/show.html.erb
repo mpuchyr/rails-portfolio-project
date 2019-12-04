@@ -1,7 +1,9 @@
 <h1>Welcome, <%= @user.username %></h1>
+
 <ul>
     <% @photoshoots.each do |shoot| %>
-        <li><%= link_to shoot.start_time, photoshoot_path(shoot) %></li>
+        <li><%= link_to shoot.start_time.strftime("%b, %d %Y - %I:%M%p"), photoshoot_path(shoot) %></li>
     <% end %>
 </ul>
+
 <button><%= link_to "Add a Photoshoot", new_photoshoot_path %></button>

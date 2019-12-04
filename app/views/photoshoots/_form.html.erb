@@ -5,10 +5,12 @@
         <%= l.text_field :name, :value => "" %>
     <% end %>
     <br>
-    Start Time: <%= p.datetime_select :start_time %>
-    <br>
-    End Time: <%= p.datetime_select :end_time %>
-    <br>
+    <% Time.use_zone(@timezone) do %>
+        Start Time: <%= p.datetime_select :start_time, ampm: true %>
+        <br>
+        End Time: <%= p.datetime_select :end_time, ampm: true %>
+        <br>
+    <% end %>
     Comments: <%= p.text_area :comments %>
     <%= p.submit %>
 <% end %>

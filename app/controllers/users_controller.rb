@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+    before_action :set_time_zone
+    
     def show
         if session[:user_id]
             @user = User.find_by(id: params[:id])
