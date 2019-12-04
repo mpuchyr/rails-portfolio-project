@@ -1,8 +1,12 @@
 class LocationsController < ApplicationController
 
     def new
-        @location = Location.new
-        @location.photoshoots.build
+        if session[:user_id]
+            @location = Location.new
+            @location.photoshoots.build
+        else
+            redirect_to root_path
+        end
     end
 
     def create
@@ -17,8 +21,6 @@ class LocationsController < ApplicationController
         else
             redirect_to new_location_path
         end
-        
-
     end
 
     private
