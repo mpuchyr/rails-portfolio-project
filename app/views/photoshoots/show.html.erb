@@ -8,6 +8,9 @@
 <p><%= @photoshoot.comments %></p>
 
 <button><%= link_to "Edit", edit_photoshoot_path %></button>
+<br>
+<button><%= link_to "All Photoshoots", user_path(@photoshoot.user) %></button>
+<br>
 <%= form_tag photoshoot_path(@photoshoot.id), method: "delete" do %>
     <%= submit_tag "Delete" %>
 <% end %>
