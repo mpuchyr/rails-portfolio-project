@@ -1,3 +1,7 @@
 <h1><%= @photoshoot.start_time %> - <%= @photoshoot.end_time %></h1>
 <h2><%= @photoshoot.location.name %></h2>
 <p><%= @photoshoot.comments %></p>
+
+<%= form_tag photoshoot_path(@photoshoot.id), method: "delete" do %>
+    <%= submit_tag "Delete Photoshoot" %>
+<% end %>

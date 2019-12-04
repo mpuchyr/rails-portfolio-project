@@ -9,6 +9,10 @@ class PhotoshootsController < ApplicationController
         else
             redirect_to login_path
         end
+    end
 
+    def destroy
+        Photoshoot.find(params[:id]).destroy
+        redirect_to user_path(session[:user_id])
     end
 end
