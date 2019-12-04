@@ -3,7 +3,11 @@ class UsersController < ApplicationController
     def show
         if session[:user_id]
             @user = User.find_by(id: params[:id])
-            @photoshoots = @user.photoshoots.all
+            if session[:user_id] == @user.id
+                @photoshoots = @user.photoshoots.all
+            else
+                redirect_to user_path(session[:user_id])
+            end
         else
             redirect_to root_path
         end
