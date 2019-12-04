@@ -12,8 +12,12 @@ class PhotoshootsController < ApplicationController
     end
 
     def new
-        @photoshoot = Photoshoot.new
-        @photoshoot.location = Location.new
+        if session[:user_id]
+            @photoshoot = Photoshoot.new
+            @photoshoot.location = Location.new
+        else
+            redirect_to login_path
+        end
     end
 
     def create
@@ -32,7 +36,18 @@ class PhotoshootsController < ApplicationController
     end
 
     def edit
-        @photoshoot = Photoshoot.find_by(id: params[:id])
+        if session[:user_id]
+            @photoshoot = Photoshoot.find_by(id: params[:id])
+            if @photoshoot
+                if session[:user_id] != @photoshoot.user.id
+                    redirect_to user_path(session[:user_id])
+                end
+            else
+                redirect_to user_path(session[:user_id])
+            end
+        else
+            redirect_to login_path
+        end
 
     end
 
