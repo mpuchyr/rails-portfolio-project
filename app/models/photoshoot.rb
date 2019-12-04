@@ -25,4 +25,5 @@ class Photoshoot < ApplicationRecord
             errors.add(:you_already_have_a_photoshoot, "scheduled at that time")
         end
     end
+
 end
