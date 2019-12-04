@@ -11,6 +11,32 @@ class PhotoshootsController < ApplicationController
         end
     end
 
+    def new
+        @photoshoot = Photoshoot.new
+        @photoshoot.location = Location.new
+    end
+
+    def create
+        @photoshoot = Photoshoot.new(photoshoot_params.except(:location_attributes))
+        if !photoshoot_params[:location_attributes][:name].blank?
+            @photoshoot.location = Location.find_or_create_by(name: photoshoot_params[:location_attributes][:name])
+        else
+            @photoshoot.location = Location.find_by(id: photoshoot_params[:location_attributes][:id])
+        end
+        binding.pry
+        if @photoshoot.valid?
+            @photoshoot.save
+            redirect_to photoshoot_path(@photoshoot)
+        else
+            render :new
+        end
+
+
+
+
+
+    end
+
     def edit
         @photoshoot = Photoshoot.find_by(id: params[:id])
 
@@ -20,8 +46,6 @@ class PhotoshootsController < ApplicationController
         @photoshoot = Photoshoot.find_by(id: params[:id])
         @location = @photoshoot.location
         if @photoshoot.update(photoshoot_params.except(:location_attributes))
-            # @photoshoot.location = Location.find_by(photoshoot_params[])
-            binding.pry
             if !photoshoot_params[:location_attributes][:name].blank?
                 @photoshoot.location = Location.find_or_create_by(name: photoshoot_params[:location_attributes][:name])
                 @photoshoot.save
@@ -43,6 +67,6 @@ class PhotoshootsController < ApplicationController
 
     private
     def photoshoot_params
-        params.require(:photoshoot).permit(:start_time, :end_time, :comments, location_attributes: [:name, :id])
+        params.require(:photoshoot).permit(:user_id, :start_time, :end_time, :comments, location_attributes: [:name, :id])
     end
 end
