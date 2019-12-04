@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
     def show
-        @user = User.find_by(id: params[:id])
+        if session[:user_id]
+            @user = User.find_by(id: params[:id])
+            @photoshoots = @user.photoshoots.all
+        else
+            redirect_to root_path
+        end
     end
 
     def new
