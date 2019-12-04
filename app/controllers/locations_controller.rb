@@ -6,14 +6,19 @@ class LocationsController < ApplicationController
     end
 
     def create
-        binding.pry
-        if location_params[:name].blank?
+        if location_params[:name].blank? && !location_params[:id].blank?
             @location = Location.find_by(id: location_params[:id])
-        else
+            @photoshoot = @location.photoshoots.create(location_params[:photoshoots_attributes]["0"])
+            redirect_to photoshoot_path(@photoshoot)
+        elsif location_params[:id].blank? && !location_params[:name].blank?
             @location = Location.find_or_create_by(name: location_params[:name])
+            @photoshoot = @location.photoshoots.create(location_params[:photoshoots_attributes]["0"])
+            redirect_to photoshoot_path(@photoshoot)
+        else
+            redirect_to new_location_path
         end
-        @photoshoot = @location.photoshoots.create(location_params[:photoshoots_attributes]["0"])
-        redirect_to photoshoot_path(@photoshoot)
+        
+
     end
 
     private

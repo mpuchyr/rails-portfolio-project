@@ -1,6 +1,7 @@
 <%= form_for @location do |l| %>
-    <%= l.text_field :name %>
+
     <%= l.collection_select :id, Location.all, :id, :name, :include_blank => true %>
+    <%= l.text_field :name %>
 
     <%= l.fields_for :photoshoots do |p| %>
         <%= p.hidden_field :user_id, value: session[:user_id] %>
