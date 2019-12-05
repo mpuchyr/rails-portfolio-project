@@ -1,5 +1,18 @@
 <h1>Welcome, <%= @user.username %></h1>
 
+<div>
+    <h3>Filter Photoshoots</h3>
+    <%= form_tag("/users/#{@user.id}", method: "get") do %>
+        <%= select_tag "location", 
+            options_from_collection_for_select(Location.all, "id", "name"), include_blank: true %>
+        <%= submit_tag "Filter" %>
+    <% end %>
+</div>
+
+<% if !params[:location].blank? %>
+    <% @photoshoots = @user.photoshoots.where(location_id: params[:location]) %>
+<% end %>
+
 <ul>
     <% @photoshoots.each do |shoot| %>
         <li><%= link_to "#{shoot.start_time.strftime("%b, %d %Y - %I:%M%p")} - #{shoot.location.name}", photoshoot_path(shoot) %></li>
