@@ -4,20 +4,25 @@
         <%= l.label "Choose Location: " %>
         <%= l.collection_select :id, Location.all, :id, :name, :include_blank => true %>
         <br>
+        <br>
         <%= l.label "Add New Location: " %> 
         <%= l.text_field :name, :value => "" %>
     <% end %>
+    <br>
     <br>
     <% Time.use_zone(@timezone) do %>
         <%= p.label :start_time, "Start Time: " %>
         <%= p.datetime_select :start_time, ampm: true %>
         <br>
+        <br>
         <%= p.label :end_time, "End Time: " %>
         <%= p.datetime_select :end_time, ampm: true %>
+        <br>
         <br>
     <% end %>
     <%= p.label :comments, "Comments: " %>
     <%= p.text_area :comments %>
+    <br>
     <br>
     <%= p.submit %>
 <% end %>
