@@ -24,7 +24,7 @@ header {
     border-radius: 10px;
 }
 
-header button {
+button {
     padding: 15px;
     margin: 5px;
     border-radius: 10px;
@@ -33,7 +33,7 @@ header button {
     border: 2px solid #45A29E;
 }
 
-header a {
+button a {
     text-decoration: none;
     color: #45A29E;
 }
@@ -73,5 +73,7 @@ form input {
 form textarea {
     border-radius: 10px;
 }
+
+
 
 
