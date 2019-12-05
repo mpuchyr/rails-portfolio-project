@@ -2,7 +2,7 @@
 
 <ul>
     <% @photoshoots.each do |shoot| %>
-        <li><%= link_to shoot.start_time.strftime("%b, %d %Y - %I:%M%p"), photoshoot_path(shoot) %></li>
+        <li><%= link_to "#{shoot.start_time.strftime("%b, %d %Y - %I:%M%p")} - #{shoot.location.name}", photoshoot_path(shoot) %></li>
     <% end %>
 </ul>
 
