@@ -1,18 +1,23 @@
 <%= form_for @photoshoot do |p| %>
     <%= p.hidden_field :user_id, value: session[:user_id] %>
     <%= p.fields_for :location_attributes, @photoshoot.location do |l| %>
-        Choose Location: <%= l.collection_select :id, Location.all, :id, :name, :include_blank => true %>
+        <%= l.label "Choose Location: " %>
+        <%= l.collection_select :id, Location.all, :id, :name, :include_blank => true %>
         <br>
-        Add New Location: <%= l.text_field :name, :value => "" %>
+        <%= l.label "Add New Location: " %> 
+        <%= l.text_field :name, :value => "" %>
     <% end %>
     <br>
     <% Time.use_zone(@timezone) do %>
-        Start Time: <%= p.datetime_select :start_time, ampm: true %>
+        <%= p.label :start_time, "Start Time: " %>
+        <%= p.datetime_select :start_time, ampm: true %>
         <br>
-        End Time: <%= p.datetime_select :end_time, ampm: true %>
+        <%= p.label :end_time, "End Time: " %>
+        <%= p.datetime_select :end_time, ampm: true %>
         <br>
     <% end %>
-    Comments: <%= p.text_area :comments %>
+    <%= p.label :comments, "Comments: " %>
+    <%= p.text_area :comments %>
     <br>
     <%= p.submit %>
 <% end %>
