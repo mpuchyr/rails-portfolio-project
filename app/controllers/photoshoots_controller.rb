@@ -13,9 +13,8 @@ class PhotoshootsController < ApplicationController
     end
 
     def new
-
         if session[:user_id]
-            @time_zone = User.find_by(id: session[:user_id]).time_zone
+            set_time_zone
             @photoshoot = Photoshoot.new
             @photoshoot.location = Location.new
         else

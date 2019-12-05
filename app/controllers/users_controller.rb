@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     
     def show
         if session[:user_id]
-            @user = User.find_by(id: params[:id])
+            @user = current_user
             if session[:user_id] == @user.id
                 @photoshoots = @user.photoshoots.all
             else
