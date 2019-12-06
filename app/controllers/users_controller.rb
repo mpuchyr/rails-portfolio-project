@@ -8,6 +8,7 @@ class UsersController < ApplicationController
                 @timezone = set_time_zone
                 @location_filter = location_filter
                 @date_filter = date_filter
+                binding.pry
             else
                 redirect_to user_path(session[:user_id])
             end
