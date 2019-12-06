@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
 
-  resources :users, except: [:new]
+  resources :users, except: [:new, :edit]
   get '/signup', to: 'users#new'
+  get '/preferences', to: 'users#edit'
 
   resources :photoshoots
 

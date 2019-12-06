@@ -1,3 +1,4 @@
+<% Time.zone = @timezone %>
 <% if @photoshoot.start_time.day != @photoshoot.end_time.day %>
     <h1><%= @photoshoot.start_time.strftime("%b. %d %Y %l:%M%p") %> - <%= @photoshoot.end_time.strftime("%b. %d %Y %l:%M%p") %></h1>
 <% else %>

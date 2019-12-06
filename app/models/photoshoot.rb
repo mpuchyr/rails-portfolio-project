@@ -21,7 +21,7 @@ class Photoshoot < ApplicationRecord
 
     def cannot_have_multiple_photoshoots_at_the_same_time
         shoot = Photoshoot.find_by(start_time: start_time)
-        if shoot
+        if shoot && shoot.id != id
             errors.add(:you_already_have_a_photoshoot, "scheduled at that time")
         end
     end
