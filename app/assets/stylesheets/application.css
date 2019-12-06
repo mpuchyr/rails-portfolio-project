@@ -56,6 +56,10 @@ h1 {
      display: table;
  }
 
+ ul h3{
+     text-decoration: underline;
+ }
+
  li a{
      text-decoration: none;
      color: #66FCF1;

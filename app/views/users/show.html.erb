@@ -16,8 +16,14 @@
 <% @date_filter %>
 
 <% @photoshoots = @photoshoots.sort_by {|shoot| shoot.start_time } %>
+<% month_year = @photoshoots.first.start_time.strftime("%B %Y") %>
 <ul>
+    <h3><%= month_year %></h3>
     <% @photoshoots.each do |shoot| %>
+    <% if month_year != shoot.start_time.strftime("%B %Y") %>
+        <% month_year = shoot.start_time.strftime("%B %Y") %>
+        <h3><%= month_year %></h3>
+    <% end %>
         <li><%= link_to "#{shoot.start_time.strftime("%b, %d %Y - %I:%M%p")} - #{shoot.location.name}", photoshoot_path(shoot) %></li>
     <% end %>
 </ul>
