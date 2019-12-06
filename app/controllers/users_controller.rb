@@ -44,7 +44,6 @@ class UsersController < ApplicationController
     end
 
     def date_filter
-        # binding.pry
         if params[:date]
             if !params[:date][:year].blank? && !params[:date][:month].blank? && !params[:date][:day].blank?
                 year = params[:date][:year]
@@ -69,6 +68,13 @@ class UsersController < ApplicationController
             elsif !params[:date][:year].blank? && params[:date][:month].blank? && params[:date][:day].blank?
                 year = params[:date][:year]
                 date = "%" + year.to_s + "%"
+                @photoshoots = @photoshoots.where('start_time LIKE ?', date)
+            elsif params[:date][:year].blank? && !params[:date][:month].blank? && params[:date][:day].blank?
+                month = params[:date][:month]
+                if month.to_i < 10
+                    month = "0" + month.to_s
+                end
+                date = "%-" + month + "-%"
                 @photoshoots = @photoshoots.where('start_time LIKE ?', date)
             end
         end
