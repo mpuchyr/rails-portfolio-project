@@ -1,5 +1,5 @@
 <h1>Welcome, <%= @user.username %></h1>
-
+<% Time.zone = @timezone %>
 <div>
     <%= form_tag("/users/#{@user.id}", method: "get") do %>
         <%= label_tag "Filter by Location" %>

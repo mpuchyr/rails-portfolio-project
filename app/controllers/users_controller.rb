@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-    before_action :set_time_zone
     
-    def show
-        
+    def show     
         if session[:user_id]
             @user = current_user
             if session[:user_id] == @user.id
                 @photoshoots = @user.photoshoots.all
+                @timezone = set_time_zone
                 @location_filter = location_filter
                 @date_filter = date_filter
             else
@@ -30,6 +29,25 @@ class UsersController < ApplicationController
         else
             render :new
         end
+    end
+
+    def edit
+        if session[:user_id]
+            if session[:user_id] == current_user.id
+                @user = current_user
+            else
+                redirect_to user_path(current_user)
+            end
+        else
+            redirect_to login_path
+        end
+    end
+
+    def update
+        @user = current_user
+        @user.update(user_params)
+        redirect_to user_path(current_user)
+
     end
 
     private
