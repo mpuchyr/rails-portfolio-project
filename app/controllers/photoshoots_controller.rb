@@ -5,7 +5,6 @@ class PhotoshootsController < ApplicationController
         if session[:user_id]
             @photoshoot = Photoshoot.find_by(id: params[:id])
             @timezone = set_time_zone
-            binding.pry
             if !@photoshoot || @photoshoot.user.id != session[:user_id]
                 redirect_to user_path(session[:user_id])
             end
