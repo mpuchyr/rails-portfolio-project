@@ -20,10 +20,10 @@
 <ul>
     <h3><%= month_year %></h3>
     <% @photoshoots.each do |shoot| %>
-    <% if month_year != shoot.start_time.strftime("%B %Y") %>
-        <% month_year = shoot.start_time.strftime("%B %Y") %>
-        <h3><%= month_year %></h3>
-    <% end %>
+        <% if month_year != shoot.start_time.strftime("%B %Y") %>
+            <% month_year = shoot.start_time.strftime("%B %Y") %>
+            <h3><%= month_year %></h3>
+        <% end %>
         <li><%= link_to "#{shoot.start_time.strftime("%b, %d %Y - %I:%M%p")} - #{shoot.location.name}", photoshoot_path(shoot) %></li>
     <% end %>
 </ul>
