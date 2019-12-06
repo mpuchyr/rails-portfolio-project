@@ -1,17 +1,21 @@
 <h1>Welcome, <%= @user.username %></h1>
 
 <div>
-    <h3>Filter Photoshoots</h3>
     <%= form_tag("/users/#{@user.id}", method: "get") do %>
+        <%= label_tag "Filter by Location" %>
         <%= select_tag "location", 
             options_from_collection_for_select(Location.all, "id", "name"), include_blank: true %>
+        <br>
+        <%= label_tag "Filter by Date" %>
+        <%= select_date nil, include_blank: true, order: [:month, :day, :year] %>
         <%= submit_tag "Filter" %>
     <% end %>
 </div>
 
-<% if !params[:location].blank? %>
-    <% @photoshoots = @user.photoshoots.where(location_id: params[:location]) %>
-<% end %>
+<% @location_filter %>
+<% @date_filter %>
+
+
 
 <ul>
     <% @photoshoots.each do |shoot| %>
