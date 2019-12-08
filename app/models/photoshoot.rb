@@ -2,13 +2,16 @@ class Photoshoot < ApplicationRecord
     belongs_to :user
     belongs_to :location
 
+    validates :start_time, presence: true
+    validates :end_time, presence: true
+
     validate :new_photoshoot_date_cannot_be_in_the_past, :photoshoot_cannot_start_and_end_at_same_time,
         :cannot_have_multiple_photoshoots_at_the_same_time
 
     accepts_nested_attributes_for :location
 
     def new_photoshoot_date_cannot_be_in_the_past
-        if start_time < Date.today
+        if start_time && start_time < Date.today
             errors.add(:photoshoot_date, "can't be in the past")
         end
     end

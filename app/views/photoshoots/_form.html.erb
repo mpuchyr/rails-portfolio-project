@@ -12,11 +12,11 @@
     <br>
 
         <%= p.label :start_time, "Start Time: " %>
-        <%= p.datetime_select :start_time, ampm: true, :include_blank => true %>
+        <%= p.datetime_select :start_time, ampm: true, prompt: {day: 'day', month: 'month', year: 'year' } %>
         <br>
         <br>
         <%= p.label :end_time, "End Time: " %>
-        <%= p.datetime_select :end_time, ampm: true, :include_blank => true %>
+        <%= p.datetime_select :end_time, ampm: true, prompt: {day: 'day', month: 'month', year: 'year' } %>
         <br>
         <br>
 
