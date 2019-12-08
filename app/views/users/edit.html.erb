@@ -1,6 +1,0 @@
-<h1>Change Your Time Zone</h1>
-<%= form_for @user do |f| %>
-    Time Zone: <%= f.collection_select :time_zone, ActiveSupport::TimeZone.all, :name, :to_s %>
-    <br>
-    <%= f.submit "Update Time zone" %>
-<% end %>

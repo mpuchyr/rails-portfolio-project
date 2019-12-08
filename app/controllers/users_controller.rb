@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
-    
-    def show     
+
+    def show   
         if session[:user_id]
             @user = current_user
             if session[:user_id] == @user.id
                 @photoshoots = @user.photoshoots.all
-                @timezone = set_time_zone
                 @location_filter = location_filter
                 @date_filter = date_filter
             else

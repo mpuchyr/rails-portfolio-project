@@ -10,16 +10,16 @@
     <% end %>
     <br>
     <br>
-    <% Time.use_zone(@timezone) do %>
+
         <%= p.label :start_time, "Start Time: " %>
-        <%= p.datetime_select :start_time, ampm: true %>
+        <%= p.datetime_select :start_time, ampm: true, :include_blank => true %>
         <br>
         <br>
         <%= p.label :end_time, "End Time: " %>
-        <%= p.datetime_select :end_time, ampm: true %>
+        <%= p.datetime_select :end_time, ampm: true, :include_blank => true %>
         <br>
         <br>
-    <% end %>
+
     <%= p.label :comments, "Comments: " %>
     <%= p.text_area :comments %>
     <br>

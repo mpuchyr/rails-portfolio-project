@@ -14,6 +14,7 @@
 <% @location_filter %>
 <% @date_filter %>
 
+
 <% if !@photoshoots.blank? %>
 <% @photoshoots = @photoshoots.sort_by {|shoot| shoot.start_time } %>
     <% month_year = @photoshoots.first.start_time.strftime("%B %Y") %>

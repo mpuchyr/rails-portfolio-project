@@ -4,7 +4,6 @@ class PhotoshootsController < ApplicationController
     def show
         if session[:user_id]
             @photoshoot = Photoshoot.find_by(id: params[:id])
-            @timezone = set_time_zone
             if !@photoshoot || @photoshoot.user.id != session[:user_id]
                 redirect_to user_path(session[:user_id])
             end
@@ -15,7 +14,6 @@ class PhotoshootsController < ApplicationController
 
     def new
         if session[:user_id]
-            @timezone = set_time_zone
             @photoshoot = Photoshoot.new
             @photoshoot.location = Location.new
         else
@@ -41,7 +39,6 @@ class PhotoshootsController < ApplicationController
     def edit
         if session[:user_id]
             @photoshoot = Photoshoot.find_by(id: params[:id])
-            @timezone = set_time_zone
             if @photoshoot
                 if session[:user_id] != @photoshoot.user.id
                     redirect_to user_path(session[:user_id])
