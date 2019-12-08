@@ -36,7 +36,7 @@ class UsersController < ApplicationController
             if session[:user_id] == current_user.id
                 @user = current_user
             else
-                redirect_to user_path(current_user)
+                render user_path(current_user)
             end
         else
             redirect_to login_path
