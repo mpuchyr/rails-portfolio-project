@@ -7,9 +7,12 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
   <body>
+    <% Time.zone = @timezone %>
     <header>
       <% if !session[:user_id] %>
         <button><%= link_to('Log in with Facebook', '/auth/facebook') %></button>

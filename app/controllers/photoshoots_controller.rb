@@ -1,5 +1,5 @@
 class PhotoshootsController < ApplicationController
-    before_action :set_time_zone
+
 
     def show
         if session[:user_id]
