@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
                     u.username = auth['info']['email'].split('@').first
                     u.email = auth['info']['email']
                     u.password = SecureRandom.hex
-                    u.time_zone = "UTC"
                 end
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
