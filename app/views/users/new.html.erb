@@ -16,7 +16,5 @@
     <br>
     Password: <%= f.password_field :password %>
     <br>
-    Time Zone: <%= f.collection_select :time_zone, ActiveSupport::TimeZone.all, :name, :to_s %>
-    <br>
     <%= f.submit %>
 <% end %>
