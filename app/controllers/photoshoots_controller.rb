@@ -22,7 +22,6 @@ class PhotoshootsController < ApplicationController
     end
 
     def create
-        binding.pry
         @photoshoot = Photoshoot.new(photoshoot_params.except(:location_attributes))
         if !photoshoot_params[:location_attributes][:name].blank?
             @photoshoot.location = Location.find_or_create_by(name: photoshoot_params[:location_attributes][:name])
