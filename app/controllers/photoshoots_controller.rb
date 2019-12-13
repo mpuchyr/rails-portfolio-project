@@ -1,24 +1,16 @@
 class PhotoshootsController < ApplicationController
-
+    before_action :logged_in?
 
     def show
-        if session[:user_id]
-            @photoshoot = Photoshoot.find_by(id: params[:id])
-            if !@photoshoot || @photoshoot.user.id != session[:user_id]
-                redirect_to user_path(session[:user_id])
-            end
-        else
-            redirect_to login_path
+        @photoshoot = Photoshoot.find_by(id: params[:id])
+        if !@photoshoot || @photoshoot.user.id != session[:user_id]
+            redirect_to user_path(session[:user_id])
         end
     end
 
     def new
-        if session[:user_id]
             @photoshoot = Photoshoot.new
             @photoshoot.location = Location.new
-        else
-            redirect_to login_path
-        end
     end
 
     def create
@@ -37,17 +29,13 @@ class PhotoshootsController < ApplicationController
     end
 
     def edit
-        if session[:user_id]
-            @photoshoot = Photoshoot.find_by(id: params[:id])
-            if @photoshoot
-                if session[:user_id] != @photoshoot.user.id
-                    redirect_to user_path(session[:user_id])
-                end
-            else
+        @photoshoot = Photoshoot.find_by(id: params[:id])
+        if @photoshoot
+            if session[:user_id] != @photoshoot.user.id
                 redirect_to user_path(session[:user_id])
             end
         else
-            redirect_to login_path
+            redirect_to user_path(session[:user_id])
         end
 
     end
