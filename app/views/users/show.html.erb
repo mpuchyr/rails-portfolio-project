@@ -25,9 +25,9 @@
                 <% month_year = shoot.start_time.strftime("%B %Y") %>
                 <h3><%= month_year %></h3>
             <% end %>
-            <li><%= link_to "#{shoot.start_time.strftime("%b, %d %Y - %I:%M%p")} - #{shoot.location.name}", photoshoot_path(shoot) %></li>
+            <li><%= link_to "#{shoot.start_time.strftime("%b, %d %Y - %I:%M%p")} - #{shoot.location.name}", user_photoshoot_path(shoot) %></li>
         <% end %>
     </ul>
 <% end %>
 
-<button><%= link_to "Add a Photoshoot", new_photoshoot_path %></button>
+<button><%= link_to "Add a Photoshoot", new_user_photoshoot_path(session[:user_id]) %></button>
