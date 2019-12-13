@@ -28,7 +28,6 @@ class UsersController < ApplicationController
     end
 
     def edit
-
         if session[:user_id] == current_user.id
             @user = current_user
         else
