@@ -1,17 +1,14 @@
 class UsersController < ApplicationController
+    before_action :logged_in?, except: [:new, :create]
 
     def show   
-        if session[:user_id]
-            @user = current_user
-            if session[:user_id] == @user.id
-                @photoshoots = @user.photoshoots.all
-                @location_filter = location_filter
-                @date_filter = date_filter
-            else
-                redirect_to user_path(session[:user_id])
-            end
+        @user = current_user
+        if session[:user_id] == @user.id
+            @photoshoots = @user.photoshoots.all
+            @location_filter = location_filter
+            @date_filter = date_filter
         else
-            redirect_to root_path
+            redirect_to user_path(session[:user_id])
         end
     end
 
@@ -31,15 +28,13 @@ class UsersController < ApplicationController
     end
 
     def edit
-        if session[:user_id]
-            if session[:user_id] == current_user.id
-                @user = current_user
-            else
-                render user_path(current_user)
-            end
+
+        if session[:user_id] == current_user.id
+            @user = current_user
         else
-            redirect_to login_path
+            render user_path(current_user)
         end
+
     end
 
     def update
