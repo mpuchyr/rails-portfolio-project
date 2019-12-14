@@ -29,12 +29,12 @@ class Photoshoot < ApplicationRecord
         end
     end
 
+    # Scope methods
     def self.location_date_filter(user_photoshoots, params)
         photoshoots = user_photoshoots
         photoshoots = location_filter(photoshoots, params)
         photoshoots = date_filter(photoshoots, params)
         photoshoots
-
     end
 
 

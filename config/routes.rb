@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :photoshoots
 
-  # resources :photoshoots
+
   get '/signup', to: 'users#new'
 
 
