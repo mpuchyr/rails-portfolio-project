@@ -1,16 +1,22 @@
 class PhotoshootsController < ApplicationController
     before_action :logged_in?
 
+    def index
+        @phootshoots = Photoshoot.all.where(user_id: params[:user_id])
+    end
+
     def show
         @photoshoot = Photoshoot.find_by(id: params[:id])
-        if !@photoshoot || @photoshoot.user.id != session[:user_id]
-            redirect_to user_path(session[:user_id])
+        if !@photoshoot || @photoshoot.user.id != current_user.id
+            redirect_to user_path(current_user)
         end
     end
 
     def new
-            @photoshoot = Photoshoot.new
+
+            @photoshoot = Photoshoot.new(user_id: current_user.id)
             @photoshoot.location = Location.new
+
     end
 
     def create
@@ -22,7 +28,7 @@ class PhotoshootsController < ApplicationController
         end
         if @photoshoot.valid?
             @photoshoot.save
-            redirect_to photoshoot_path(@photoshoot)
+            redirect_to user_photoshoot_path(@photoshoot.user, @photoshoot)
         else
             render :new
         end
@@ -52,7 +58,7 @@ class PhotoshootsController < ApplicationController
                     @photoshoot.location = Location.find_by(id: photoshoot_params[:location_attributes][:id])
                     @photoshoot.save
                 end
-                redirect_to photoshoot_path(@photoshoot)
+                redirect_to user_photoshoot_path(@photoshoot.user, @photoshoot)
             else
                 render :edit
             end

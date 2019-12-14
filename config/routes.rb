@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :edit] do
     resources :photoshoots
   end
+
+  resources :photoshoots
+
+  # resources :photoshoots
   get '/signup', to: 'users#new'
 
 

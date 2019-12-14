@@ -1,5 +1,5 @@
 <%= form_for @photoshoot do |p| %>
-    <%= p.hidden_field :user_id, value: session[:user_id] %>
+    <%= p.hidden_field :user_id %>
     <%= p.fields_for :location_attributes, @photoshoot.location do |l| %>
         <%= l.label "Choose Location: " %>
         <%= l.collection_select :id, Location.all, :id, :name, :include_blank => true %>
