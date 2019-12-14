@@ -11,8 +11,8 @@
     <% end %>
 </div>
 
-<% @location_filter %>
-<% @date_filter %>
+
+<% @photoshoots = Photoshoot.location_date_filter(@photoshoots, params) %>
 
 
 <% if !@photoshoots.blank? %>

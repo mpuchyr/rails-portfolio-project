@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
     has_many :photoshoots
     has_many :locations, through: :photoshoots
+
+    scope :filtered_by_location, -> (params) { where(location_id: params[:location])}
 end
