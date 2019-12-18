@@ -21,16 +21,21 @@ class PhotoshootsController < ApplicationController
 
     def create
         @photoshoot = Photoshoot.new(photoshoot_params.except(:location_attributes))
-        if !photoshoot_params[:location_attributes][:name].blank?
-            @photoshoot.location = Location.find_or_create_by(name: photoshoot_params[:location_attributes][:name])
+        binding.pry
+        if @photoshoot.user_id == current_user.id
+            if !photoshoot_params[:location_attributes][:name].blank?
+                @photoshoot.location = Location.find_or_create_by(name: photoshoot_params[:location_attributes][:name])
+            else
+                @photoshoot.location = Location.find_by(id: photoshoot_params[:location_attributes][:id])
+            end
+            if @photoshoot.valid?
+                @photoshoot.save
+                redirect_to user_photoshoot_path(@photoshoot.user, @photoshoot)
+            else
+                render :new
+            end
         else
-            @photoshoot.location = Location.find_by(id: photoshoot_params[:location_attributes][:id])
-        end
-        if @photoshoot.valid?
-            @photoshoot.save
-            redirect_to user_photoshoot_path(@photoshoot.user, @photoshoot)
-        else
-            render :new
+            redirect_to user_path(current_user)
         end
     end
 
